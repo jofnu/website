@@ -1,0 +1,48 @@
+---
+import { ui, getLang, EMAIL, LINKEDIN } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = ui[lang].contact;
+---
+
+<section id="contact" class="contact wrap">
+  <h2>{t.heading}</h2>
+  <p class="body">{t.body}</p>
+  <a class="mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+  <p class="secondary">
+    <a href={LINKEDIN} rel="me noopener" target="_blank">{t.linkedin} →</a>
+  </p>
+</section>
+
+<style>
+  .contact {
+    padding-block: clamp(3rem, 8vw, 6rem);
+  }
+  .body {
+    margin-top: 1rem;
+    max-width: 46ch;
+    color: var(--ink-soft);
+    font-size: 1.15rem;
+  }
+  .mail {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: var(--serif);
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1.05;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-word;
+  }
+  .mail:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+  }
+  .secondary {
+    margin-top: 2rem;
+  }
+  .secondary a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>

@@ -1,57 +1,26 @@
 ---
 import Base from "../layouts/Base.astro";
-import Typewriter from "../components/Typewriter.astro";
-import Reveal from "../components/Reveal.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import Parcours from "../components/Parcours.astro";
+import ArticlesRecents from "../components/ArticlesRecents.astro";
+import Contact from "../components/Contact.astro";
+import { ui } from "../i18n/ui";
+
+const t = ui.fr;
 ---
 
 <Base
-  title="Jofnu — démo système visuel"
-  description="Page de démonstration du système visuel (Phase 1)."
+  title={t.meta.title}
+  description={t.meta.description}
+  lang="fr"
+  altHref="/en/"
+  altLang="en"
 >
-  <section class="wrap" style="padding-block: clamp(3rem, 10vh, 8rem)">
-    <p class="meta">Produits IA · Architectures multi-agents</p>
-    <h1>
-      Je conçois <Typewriter
-        phrases={[
-          "des produits IA.",
-          "des architectures multi-agents.",
-          "des systèmes qui tiennent en prod.",
-        ]}
-      />
-    </h1>
-    <p
-      style="font-size: 1.25rem; margin-top: 1.5rem; max-width: 48ch; color: var(--ink-soft)"
-    >
-      Corps de texte en Geist (sans). Titres et citations en serif. Brutalist
-      élégant, vides généreux, filets fins.
-    </p>
-    <p style="margin-top: 2rem">
-      Un lien <a href="mailto:accounts@jofnu.com">en vert accent</a> et un focus visible
-      au clavier.
-    </p>
-    <hr class="rule" style="margin-block: 3rem" />
-    <div style="display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr)); margin-bottom:3rem">
-      {
-        ["Produits IA", "Multi-agents", "Cloud", "Automatisation"].map(
-          (label, i) => (
-            <Reveal delay={i * 0.08}>
-              <div style="border:1px solid var(--line); padding:1.25rem">
-                <p class="meta">0{i + 1}</p>
-                <h3 style="margin-top:0.5rem">{label}</h3>
-              </div>
-            </Reveal>
-          )
-        )
-      }
-    </div>
-    <div class="prose">
-      <h2>Bloc .prose</h2>
-      <p>Rendu MDX : paragraphe, <code>inline code</code>, liens.</p>
-      <blockquote>Citation en serif avec filet vert accent.</blockquote>
-      <ul>
-        <li>Item un</li>
-        <li>Item deux</li>
-      </ul>
-    </div>
-  </section>
+  <Hero />
+  <hr class="rule wrap" />
+  <Services />
+  <Parcours />
+  <ArticlesRecents />
+  <Contact />
 </Base>

@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
@@ -84,6 +85,7 @@ const skip = lang === "en" ? "Skip to content" : "Aller au contenu";
   </head>
   <body>
     <a class="skip" href="#main">{skip}</a>
+    <Header />
     <main id="main">
       <slot />
     </main>

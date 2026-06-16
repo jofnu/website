@@ -1,0 +1,47 @@
+---
+import { ui, getLang, EMAIL } from "../i18n/ui";
+import LangSwitch from "./LangSwitch.astro";
+
+const lang = getLang(Astro.currentLocale);
+const t = ui[lang];
+const home = lang === "fr" ? "/" : "/en/";
+const blog = lang === "fr" ? "/blog" : "/en/blog";
+---
+
+<header class="hd wrap">
+  <a class="brand" href={home}>Jofnu</a>
+  <nav class="nav">
+    <a href={blog}>{t.nav.blog}</a>
+    <a href={`mailto:${EMAIL}`}>{t.nav.contact}</a>
+    <LangSwitch />
+  </nav>
+</header>
+
+<style>
+  .hd {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.5rem;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  .nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .nav a:hover {
+    color: var(--accent);
+  }
+</style>

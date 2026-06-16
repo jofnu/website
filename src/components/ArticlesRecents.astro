@@ -1,0 +1,38 @@
+---
+import { ui, getLang } from "../i18n/ui";
+
+// Phase 3: structured placeholder. Phase 4 wires live posts (getCollection).
+const lang = getLang(Astro.currentLocale);
+const t = ui[lang].articles;
+const blog = lang === "fr" ? "/blog" : "/en/blog";
+---
+
+<section class="articles wrap">
+  <div class="head">
+    <h2>{t.heading}</h2>
+    <a class="all" href={blog}>{t.all}</a>
+  </div>
+  <p class="empty serif">{t.empty}</p>
+</section>
+
+<style>
+  .articles {
+    padding-block: clamp(2rem, 6vw, 5rem);
+  }
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .all {
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .empty {
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+  }
+</style>

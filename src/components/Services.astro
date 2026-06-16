@@ -1,0 +1,51 @@
+---
+import { ui, getLang } from "../i18n/ui";
+import Reveal from "./Reveal.astro";
+
+const lang = getLang(Astro.currentLocale);
+const t = ui[lang].services;
+---
+
+<section class="services wrap">
+  <h2>{t.heading}</h2>
+  <div class="grid">
+    {
+      t.items.map((s, i) => (
+        <Reveal delay={i * 0.07}>
+          <article class="card">
+            <p class="meta">{String(i + 1).padStart(2, "0")}</p>
+            <h3>{s.title}</h3>
+            <p class="body">{s.body}</p>
+          </article>
+        </Reveal>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .services {
+    padding-block: clamp(2rem, 6vw, 5rem);
+  }
+  h2 {
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  }
+  .grid {
+    display: grid;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+  .card {
+    border: 1px solid var(--line);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    height: 100%;
+  }
+  .card h3 {
+    margin-top: 0.6rem;
+  }
+  .body {
+    margin-top: 0.6rem;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+</style>

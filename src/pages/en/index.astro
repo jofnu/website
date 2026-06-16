@@ -1,0 +1,26 @@
+---
+import Base from "../../layouts/Base.astro";
+import Hero from "../../components/Hero.astro";
+import Services from "../../components/Services.astro";
+import Parcours from "../../components/Parcours.astro";
+import ArticlesRecents from "../../components/ArticlesRecents.astro";
+import Contact from "../../components/Contact.astro";
+import { ui } from "../../i18n/ui";
+
+const t = ui.en;
+---
+
+<Base
+  title={t.meta.title}
+  description={t.meta.description}
+  lang="en"
+  altHref="/"
+  altLang="fr"
+>
+  <Hero />
+  <hr class="rule wrap" />
+  <Services />
+  <Parcours />
+  <ArticlesRecents />
+  <Contact />
+</Base>

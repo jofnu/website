@@ -1,0 +1,62 @@
+---
+import { ui, getLang } from "../i18n/ui";
+import Typewriter from "./Typewriter.astro";
+
+const lang = getLang(Astro.currentLocale);
+const t = ui[lang].hero;
+---
+
+<section class="hero wrap">
+  <p class="meta">{t.eyebrow}</p>
+  <h1>
+    {t.prefix}{" "}
+    <span class="accent"><Typewriter phrases={[...t.phrases]} /></span>
+  </h1>
+  <p class="manifesto serif">{t.manifesto}</p>
+  <p class="subtitle">{t.subtitle}</p>
+  <p class="cta-row">
+    <a class="cta" href="#contact">{t.cta} →</a>
+  </p>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 9vh, 7rem) clamp(3rem, 8vh, 6rem);
+  }
+  h1 {
+    margin-top: 1rem;
+    max-width: 18ch;
+  }
+  .accent :global(.tw-text) {
+    color: var(--accent);
+  }
+  .manifesto {
+    margin-top: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    max-width: 24ch;
+    color: var(--ink);
+  }
+  .subtitle {
+    margin-top: 1.5rem;
+    max-width: 52ch;
+    color: var(--ink-soft);
+    font-size: 1.15rem;
+  }
+  .cta-row {
+    margin-top: 2.5rem;
+  }
+  .cta {
+    display: inline-block;
+    border: 1px solid var(--ink);
+    padding: 0.8rem 1.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .cta:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+</style>
