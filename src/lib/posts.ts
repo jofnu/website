@@ -10,7 +10,7 @@ export const readingTime = (body = "") =>
 const visible = (p: Post) => (import.meta.env.PROD ? !p.data.draft : true);
 
 export const postHref = (p: Post) =>
-  (p.data.lang === "fr" ? "/blog/" : "/en/blog/") + p.data.slug;
+  (p.data.lang === "fr" ? "/blog/" : "/en/blog/") + p.data.slug + "/";
 
 /** Posts for a language, drafts excluded in prod, newest first. */
 export async function getPosts(lang: Lang): Promise<Post[]> {
