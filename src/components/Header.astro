@@ -2,6 +2,10 @@
 import { ui, getLang, EMAIL } from "../i18n/ui";
 import LangSwitch from "./LangSwitch.astro";
 
+interface Props {
+  altHref?: string | null;
+}
+const { altHref } = Astro.props;
 const lang = getLang(Astro.currentLocale);
 const t = ui[lang];
 const home = lang === "fr" ? "/" : "/en/";
@@ -13,7 +17,7 @@ const blog = lang === "fr" ? "/blog" : "/en/blog";
   <nav class="nav">
     <a href={blog}>{t.nav.blog}</a>
     <a href={`mailto:${EMAIL}`}>{t.nav.contact}</a>
-    <LangSwitch />
+    <LangSwitch href={altHref} />
   </nav>
 </header>
 

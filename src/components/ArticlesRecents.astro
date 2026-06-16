@@ -1,10 +1,12 @@
 ---
 import { ui, getLang } from "../i18n/ui";
+import { getPosts } from "../lib/posts";
+import PostCard from "./PostCard.astro";
 
-// Phase 3: structured placeholder. Phase 4 wires live posts (getCollection).
 const lang = getLang(Astro.currentLocale);
 const t = ui[lang].articles;
 const blog = lang === "fr" ? "/blog" : "/en/blog";
+const posts = (await getPosts(lang)).slice(0, 3);
 ---
 
 <section class="articles wrap">
@@ -12,7 +14,17 @@ const blog = lang === "fr" ? "/blog" : "/en/blog";
     <h2>{t.heading}</h2>
     <a class="all" href={blog}>{t.all}</a>
   </div>
-  <p class="empty serif">{t.empty}</p>
+  {
+    posts.length > 0 ? (
+      <div class="list">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    ) : (
+      <p class="empty serif">{t.empty}</p>
+    )
+  }
 </section>
 
 <style>
@@ -29,6 +41,10 @@ const blog = lang === "fr" ? "/blog" : "/en/blog";
   .all {
     text-decoration: none;
     font-weight: 600;
+  }
+  .list {
+    margin-top: 1.5rem;
+    border-bottom: 1px solid var(--line);
   }
   .empty {
     margin-top: 1.5rem;

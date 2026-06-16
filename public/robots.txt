@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jofnu.com/sitemap-index.xml

@@ -1,0 +1,102 @@
+---
+import Base from "./Base.astro";
+import { readingTime, type Post } from "../lib/posts";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  post: Post;
+  altHref?: string | null;
+}
+const { post, altHref = null } = Astro.props;
+const { title, description, date, lang, tags } = post.data;
+const t = ui[lang].articles;
+const rt = readingTime(post.body);
+const dateStr = date.toLocaleDateString(lang === "fr" ? "fr-FR" : "en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const backHref = lang === "fr" ? "/blog" : "/en/blog";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: date.toISOString(),
+  inLanguage: lang,
+  author: { "@type": "Person", name: "Alexandre Santos Figueiredo" },
+  publisher: { "@type": "Organization", name: "Jofnu" },
+  url: new URL(Astro.url.pathname, Astro.site).href,
+};
+---
+
+<Base
+  title={`${title} — Jofnu`}
+  description={description}
+  lang={lang}
+  altHref={altHref}
+  altLang={lang === "fr" ? "en" : "fr"}
+>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+
+  <article class="wrap post">
+    <a class="back" href={backHref}>← {ui[lang].nav.blog}</a>
+    <header class="head">
+      <p class="meta">{dateStr} · {t.readingTime(rt)}</p>
+      <h1>{title}</h1>
+      {
+        tags && tags.length > 0 && (
+          <ul class="tags">
+            {tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    padding-block: clamp(2rem, 5vw, 4rem);
+  }
+  .back {
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .head {
+    margin-block: clamp(1.5rem, 4vw, 3rem);
+  }
+  .head h1 {
+    margin-top: 1rem;
+    max-width: 22ch;
+  }
+  .tags {
+    margin-top: 1.25rem;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tags li {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 0.2rem 0.5rem;
+  }
+</style>

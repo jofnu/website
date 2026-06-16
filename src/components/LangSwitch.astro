@@ -2,10 +2,12 @@
 import { getLang } from "../i18n/ui";
 
 // Links to the mirror of the current page in the other language.
-// Optional `href` overrides the auto-computed target (used by blog posts
-// to hide the switch when no translation exists).
+// `href`:
+//   undefined → auto-compute the mirror path (landing, blog index…)
+//   string    → use it (explicit translation URL)
+//   null      → no translation exists → render nothing
 interface Props {
-  href?: string;
+  href?: string | null;
 }
 const lang = getLang(Astro.currentLocale);
 const path = Astro.url.pathname;
@@ -15,11 +17,18 @@ const auto =
     ? "/en" + (path === "/" ? "/" : path)
     : path.replace(/^\/en/, "") || "/";
 
-const { href = auto } = Astro.props;
+const { href } = Astro.props;
+const target = href === undefined ? auto : href;
 const other = lang === "fr" ? "EN" : "FR";
 ---
 
-<a class="lang" href={href} hreflang={lang === "fr" ? "en" : "fr"}>{other}</a>
+{
+  target && (
+    <a class="lang" href={target} hreflang={lang === "fr" ? "en" : "fr"}>
+      {other}
+    </a>
+  )
+}
 
 <style>
   .lang {

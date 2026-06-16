@@ -1,0 +1,34 @@
+---
+title: "Shipping a multi-agent architecture to production"
+description: "Why an agent system that works in a demo often fails in production — and the architecture choices that make the difference."
+date: 2026-06-10
+slug: multi-agents-en-prod
+lang: en
+tags: ["Multi-agent", "Architecture", "Production"]
+---
+
+Most multi-agent systems impress in a demo and disappoint in production. The gap
+almost never comes from the model: it comes from the architecture around the
+model.
+
+## The demo trap
+
+A demo optimizes for the happy path: a well-formed question, clean context, a
+single user. Production sends you ambiguous input, tools that fail, and dozens of
+runs in parallel.
+
+> An agent that can't fail cleanly isn't ready for production.
+
+## Three decisions that matter
+
+1. **Make every step observable.** Trace tool calls, decisions and cost.
+   Without traces, you debug blind.
+2. **Bound autonomy.** Explicit guardrails (budgets, timeouts, validation) beat
+   a prompt that "asks nicely".
+3. **Isolate state.** Shared memory and context are the first source of
+   non-reproducible bugs.
+
+## The takeaway
+
+Useful AI is not a demo: it is a system that holds, measures itself and scales.
+The rest is plumbing — but plumbing is what decides success.

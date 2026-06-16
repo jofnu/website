@@ -9,8 +9,8 @@ interface Props {
   description: string;
   lang?: "fr" | "en";
   ogImage?: string;
-  /** alternate-language URL (path) for hreflang, if a translation exists */
-  altHref?: string;
+  /** alternate-language URL: string = exists, null = none (hide switch) */
+  altHref?: string | null;
   altLang?: "fr" | "en";
 }
 
@@ -26,6 +26,15 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
 const skip = lang === "en" ? "Skip to content" : "Aller au contenu";
+
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Jofnu",
+  url: Astro.site?.href,
+  founder: { "@type": "Person", name: "Alexandre Santos Figueiredo" },
+  sameAs: ["https://www.linkedin.com/in/alexandresantos-figueiredo"],
+};
 ---
 
 <!doctype html>
@@ -80,12 +89,18 @@ const skip = lang === "en" ? "Skip to content" : "Aller au contenu";
       href={lang === "en" ? "/en/rss.xml" : "/rss.xml"}
     />
 
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(orgLd)}
+    />
+
     <ClientRouter />
     <slot name="head" />
   </head>
   <body>
     <a class="skip" href="#main">{skip}</a>
-    <Header />
+    <Header altHref={altHref} />
     <main id="main">
       <slot />
     </main>

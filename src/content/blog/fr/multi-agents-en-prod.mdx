@@ -1,0 +1,35 @@
+---
+title: "Faire passer une architecture multi-agents en production"
+description: "Pourquoi un système d'agents qui marche en démo échoue souvent en production — et les choix d'architecture qui changent la donne."
+date: 2026-06-10
+slug: multi-agents-en-prod
+lang: fr
+tags: ["Multi-agents", "Architecture", "Production"]
+---
+
+La plupart des systèmes multi-agents impressionnent en démo et déçoivent en
+production. L'écart ne vient presque jamais du modèle : il vient de
+l'architecture autour du modèle.
+
+## Le piège de la démo
+
+Une démo optimise pour le cas heureux : une question bien posée, un contexte
+propre, un seul utilisateur. La production, elle, vous envoie des entrées
+ambiguës, des outils qui tombent, et des dizaines d'exécutions en parallèle.
+
+> Un agent qui ne sait pas échouer proprement n'est pas prêt pour la production.
+
+## Trois décisions qui comptent
+
+1. **Rendre chaque étape observable.** Tracez les appels d'outils, les
+   décisions et les coûts. Sans traces, vous déboguez à l'aveugle.
+2. **Borner l'autonomie.** Des garde-fous explicites (budgets, timeouts,
+   validations) valent mieux qu'un prompt qui « demande gentiment ».
+3. **Isoler l'état.** La mémoire et le contexte partagés sont la première
+   source de bugs non reproductibles.
+
+## Ce qu'il faut retenir
+
+L'IA utile n'est pas une démo : c'est un système qui tient, se mesure et passe
+à l'échelle. Le reste n'est que tuyauterie — mais c'est la tuyauterie qui
+décide du succès.

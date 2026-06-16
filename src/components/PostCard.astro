@@ -1,0 +1,70 @@
+---
+import { readingTime, postHref, type Post } from "../lib/posts";
+import { ui } from "../i18n/ui";
+
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const lang = post.data.lang;
+const t = ui[lang].articles;
+const href = postHref(post);
+const rt = readingTime(post.body);
+const dateStr = post.data.date.toLocaleDateString(
+  lang === "fr" ? "fr-FR" : "en-US",
+  { year: "numeric", month: "long", day: "numeric" }
+);
+---
+
+<a class="card" href={href}>
+  <p class="meta">{dateStr} · {t.readingTime(rt)}</p>
+  <h3>{post.data.title}</h3>
+  <p class="desc">{post.data.description}</p>
+  {
+    post.data.tags && post.data.tags.length > 0 && (
+      <ul class="tags">
+        {post.data.tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    )
+  }
+</a>
+
+<style>
+  .card {
+    display: block;
+    border-top: 1px solid var(--line);
+    padding-block: clamp(1.5rem, 3vw, 2.25rem);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .card:hover h3 {
+    color: var(--accent);
+  }
+  .card h3 {
+    margin-top: 0.5rem;
+  }
+  .desc {
+    margin-top: 0.5rem;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  .tags {
+    margin-top: 0.85rem;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tags li {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 0.2rem 0.5rem;
+  }
+</style>

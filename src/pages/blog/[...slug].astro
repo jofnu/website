@@ -1,0 +1,21 @@
+---
+import { render } from "astro:content";
+import Post from "../../layouts/Post.astro";
+import { getPosts, translationHref } from "../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPosts("fr");
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const altHref = await translationHref(post.data.slug, "en");
+---
+
+<Post post={post} altHref={altHref}>
+  <Content />
+</Post>
