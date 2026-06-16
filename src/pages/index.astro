@@ -1,5 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
+import Typewriter from "../components/Typewriter.astro";
+import Reveal from "../components/Reveal.astro";
 ---
 
 <Base
@@ -8,7 +10,15 @@ import Base from "../layouts/Base.astro";
 >
   <section class="wrap" style="padding-block: clamp(3rem, 10vh, 8rem)">
     <p class="meta">Produits IA · Architectures multi-agents</p>
-    <h1>Concevoir des systèmes&nbsp;IA qui tiennent en production.</h1>
+    <h1>
+      Je conçois <Typewriter
+        phrases={[
+          "des produits IA.",
+          "des architectures multi-agents.",
+          "des systèmes qui tiennent en prod.",
+        ]}
+      />
+    </h1>
     <p
       style="font-size: 1.25rem; margin-top: 1.5rem; max-width: 48ch; color: var(--ink-soft)"
     >
@@ -20,6 +30,20 @@ import Base from "../layouts/Base.astro";
       au clavier.
     </p>
     <hr class="rule" style="margin-block: 3rem" />
+    <div style="display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr)); margin-bottom:3rem">
+      {
+        ["Produits IA", "Multi-agents", "Cloud", "Automatisation"].map(
+          (label, i) => (
+            <Reveal delay={i * 0.08}>
+              <div style="border:1px solid var(--line); padding:1.25rem">
+                <p class="meta">0{i + 1}</p>
+                <h3 style="margin-top:0.5rem">{label}</h3>
+              </div>
+            </Reveal>
+          )
+        )
+      }
+    </div>
     <div class="prose">
       <h2>Bloc .prose</h2>
       <p>Rendu MDX : paragraphe, <code>inline code</code>, liens.</p>

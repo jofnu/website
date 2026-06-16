@@ -1,0 +1,62 @@
+---
+// Scroll-reveal island (vanilla motion, no framework).
+// Fades + lifts content once when it enters the viewport.
+// No JS / reduced-motion → content shown statically (see CSS below).
+interface Props {
+  delay?: number; // seconds, for stagger
+  as?: string; // wrapper tag, default div
+}
+const { delay = 0, as: Tag = "div" } = Astro.props;
+---
+
+<Tag class="reveal" data-delay={delay}>
+  <slot />
+</Tag>
+
+<style>
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  /* JS off → always visible */
+  :global(html.no-js) .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  import { animate, inView } from "motion";
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = document.querySelectorAll<HTMLElement>(".reveal");
+
+  if (reduce) {
+    els.forEach((el) => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
+  } else {
+    els.forEach((el) => {
+      const delay = Number(el.dataset.delay ?? 0);
+      const stop = inView(
+        el,
+        () => {
+          animate(
+            el,
+            { opacity: [0, 1], y: [12, 0] },
+            { duration: 0.5, delay, ease: "easeOut" }
+          );
+          stop(); // once: stop observing after first reveal
+        },
+        { amount: 0.2 }
+      );
+    });
+  }
+</script>

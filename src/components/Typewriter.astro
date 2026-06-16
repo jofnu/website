@@ -1,0 +1,72 @@
+---
+// Typewriter island (plain vanilla — char timing needs no motion lib).
+// Renders the first phrase statically so it's correct with no JS /
+// reduced-motion; the script types/erases the list in a loop.
+interface Props {
+  phrases: string[];
+}
+const { phrases } = Astro.props;
+---
+
+<span class="tw" data-phrases={JSON.stringify(phrases)}>
+  <span class="tw-text">{phrases[0]}</span><span class="tw-caret" aria-hidden="true"
+  ></span>
+</span>
+
+<style>
+  .tw-caret {
+    display: inline-block;
+    width: 0.06em;
+    height: 0.9em;
+    margin-left: 0.06em;
+    background: var(--accent);
+    transform: translateY(0.08em);
+    animation: tw-blink 1s step-end infinite;
+  }
+  @keyframes tw-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const el = document.querySelector<HTMLElement>(".tw");
+  const textEl = el?.querySelector<HTMLElement>(".tw-text");
+
+  if (!reduce && el && textEl) {
+    const phrases: string[] = JSON.parse(el.dataset.phrases || "[]");
+    const TYPE = 55,
+      ERASE = 30,
+      HOLD = 1800,
+      BETWEEN = 350;
+    let pi = 0;
+    let ci = phrases[0]?.length ?? 0; // first phrase starts fully typed
+    let deleting = true;
+
+    const tick = () => {
+      const word = phrases[pi] ?? "";
+      if (deleting) {
+        ci--;
+        textEl.textContent = word.slice(0, ci);
+        if (ci <= 0) {
+          deleting = false;
+          pi = (pi + 1) % phrases.length;
+          return void setTimeout(tick, BETWEEN);
+        }
+        setTimeout(tick, ERASE);
+      } else {
+        ci++;
+        textEl.textContent = word.slice(0, ci);
+        if (ci >= word.length) {
+          deleting = true;
+          return void setTimeout(tick, HOLD);
+        }
+        setTimeout(tick, TYPE);
+      }
+    };
+
+    if (phrases.length > 1) setTimeout(tick, HOLD);
+  }
+</script>

@@ -28,8 +28,11 @@ const skip = lang === "en" ? "Skip to content" : "Aller au contenu";
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="no-js">
   <head>
+    <script is:inline>
+      document.documentElement.classList.remove("no-js");
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
