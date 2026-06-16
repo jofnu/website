@@ -1,0 +1,75 @@
+---
+const lang = (Astro.currentLocale ?? "fr") as "fr" | "en";
+const year = new Date().getFullYear();
+const linkedin = "https://www.linkedin.com/in/alexandresantos-figueiredo"; // TODO confirmer URL LinkedIn
+const rssHref = lang === "en" ? "/en/rss.xml" : "/rss.xml";
+const t = {
+  fr: {
+    rss: "Flux RSS",
+    legal: "Mentions légales",
+    rights: "Tous droits réservés",
+  },
+  en: { rss: "RSS feed", legal: "Legal notice", rights: "All rights reserved" },
+}[lang];
+---
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="meta">Jofnu</p>
+      <!-- TODO légal : remplacer par les vraies données SASU avant prod -->
+      <p class="legal">
+        Jofnu — SASU au capital de <!-- TODO capital -->€.<br />
+        SIREN <!-- TODO SIREN --> — RCS <!-- TODO ville RCS -->.<br />
+        <!-- TODO adresse siège social -->.<br />
+        Directeur de la publication : Alexandre Santos Figueiredo.
+      </p>
+    </div>
+    <nav class="footer-links">
+      <a href="mailto:accounts@jofnu.com">accounts@jofnu.com</a>
+      <a href={linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+      <a href={rssHref}>{t.rss}</a>
+    </nav>
+  </div>
+  <div class="wrap footer-bottom">
+    <p class="meta">© {year} Jofnu · {t.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line);
+    margin-top: clamp(4rem, 10vw, 9rem);
+    padding-block: clamp(2.5rem, 6vw, 4rem) 1.5rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 40rem) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  .legal {
+    margin-top: 0.75rem;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .footer-bottom {
+    margin-top: clamp(2rem, 5vw, 3rem);
+  }
+</style>

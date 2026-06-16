@@ -1,0 +1,89 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: "fr" | "en";
+  ogImage?: string;
+  /** alternate-language URL (path) for hreflang, if a translation exists */
+  altHref?: string;
+  altLang?: "fr" | "en";
+}
+
+const {
+  title,
+  description,
+  lang = (Astro.currentLocale as "fr" | "en") ?? "fr",
+  ogImage = "/og.png",
+  altHref,
+  altLang,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+const skip = lang === "en" ? "Skip to content" : "Aller au contenu";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    {
+      altHref && altLang && (
+        <link
+          rel="alternate"
+          hreflang={altLang}
+          href={new URL(altHref, Astro.site).href}
+        />
+      )
+    }
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "fr_FR"} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link
+      rel="preload"
+      href="/fonts/instrument-serif-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Jofnu"
+      href={lang === "en" ? "/en/rss.xml" : "/rss.xml"}
+    />
+
+    <ClientRouter />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">{skip}</a>
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

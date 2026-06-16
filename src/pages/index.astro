@@ -1,17 +1,33 @@
 ---
-
+import Base from "../layouts/Base.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base
+  title="Jofnu — démo système visuel"
+  description="Page de démonstration du système visuel (Phase 1)."
+>
+  <section class="wrap" style="padding-block: clamp(3rem, 10vh, 8rem)">
+    <p class="meta">Produits IA · Architectures multi-agents</p>
+    <h1>Concevoir des systèmes&nbsp;IA qui tiennent en production.</h1>
+    <p
+      style="font-size: 1.25rem; margin-top: 1.5rem; max-width: 48ch; color: var(--ink-soft)"
+    >
+      Corps de texte en Geist (sans). Titres et citations en serif. Brutalist
+      élégant, vides généreux, filets fins.
+    </p>
+    <p style="margin-top: 2rem">
+      Un lien <a href="mailto:accounts@jofnu.com">en vert accent</a> et un focus visible
+      au clavier.
+    </p>
+    <hr class="rule" style="margin-block: 3rem" />
+    <div class="prose">
+      <h2>Bloc .prose</h2>
+      <p>Rendu MDX : paragraphe, <code>inline code</code>, liens.</p>
+      <blockquote>Citation en serif avec filet vert accent.</blockquote>
+      <ul>
+        <li>Item un</li>
+        <li>Item deux</li>
+      </ul>
+    </div>
+  </section>
+</Base>
