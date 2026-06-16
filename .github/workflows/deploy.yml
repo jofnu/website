@@ -47,7 +47,7 @@ jobs:
         uses: tailscale/github-action@v3
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          oauth-secret: ${{ secrets.TS_OAUTH_CLIENT_SECRET }}
           tags: tag:ci
 
       # VPS_HOST = VPS Tailscale IP (100.x) or MagicDNS name.
@@ -59,7 +59,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd ${{ secrets.CLOUD_DIR }}
+            cd ${{ secrets.VPS_DIR }}
             docker compose pull website
             docker compose up -d website
             docker image prune -f
