@@ -1,6 +1,7 @@
 ---
 import { ui, getLang } from "../i18n/ui";
 import Typewriter from "./Typewriter.astro";
+import Button from "./Button.astro";
 
 const lang = getLang(Astro.currentLocale);
 const t = ui[lang].hero;
@@ -8,14 +9,23 @@ const t = ui[lang].hero;
 
 <section class="hero wrap">
   <p class="meta">{t.eyebrow}</p>
-  <h1>
-    {t.prefix}{" "}
-    <span class="accent"><Typewriter phrases={[...t.phrases]} /></span>
+  <h1 class="title">
+    <span class="title-live">
+      {t.prefix}{" "}
+      <span class="accent"><Typewriter phrases={[...t.phrases]} /></span>
+    </span>
+    {
+      t.phrases.map((p) => (
+        <span class="title-ghost" aria-hidden="true">
+          {t.prefix} {p}
+        </span>
+      ))
+    }
   </h1>
   <p class="manifesto serif">{t.manifesto}</p>
   <p class="subtitle">{t.subtitle}</p>
   <p class="cta-row">
-    <a class="cta" href="#contact">{t.cta} →</a>
+    <Button href="#contact">{t.cta} →</Button>
   </p>
 </section>
 
@@ -27,6 +37,19 @@ const t = ui[lang].hero;
   h1 {
     margin-top: 1rem;
     max-width: 18ch;
+  }
+
+  /* All phrases stack in one grid cell → height = tallest; live text overlays. */
+  .title {
+    display: grid;
+  }
+
+  .title > * {
+    grid-area: 1 / 1;
+  }
+
+  .title-ghost {
+    visibility: hidden;
   }
 
   .accent :global(.tw-text) {
@@ -52,20 +75,37 @@ const t = ui[lang].hero;
     margin-top: 2.5rem;
   }
 
-  .cta {
-    display: inline-block;
-    border: 1px solid var(--ink);
-    padding: 0.8rem 1.5rem;
-    color: var(--ink);
-    text-decoration: none;
-    font-weight: 600;
-    transition:
-      background 0.2s,
-      color 0.2s;
+  /* Load stagger: only when JS is on (class removed pre-paint) and motion allowed. */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html:not(.no-js)) .hero > * {
+      opacity: 0;
+      animation: hero-in 0.6s ease forwards;
+    }
+    :global(html:not(.no-js)) .hero > :nth-child(1) {
+      animation-delay: 0.05s;
+    }
+    :global(html:not(.no-js)) .hero > :nth-child(2) {
+      animation-delay: 0.15s;
+    }
+    :global(html:not(.no-js)) .hero > :nth-child(3) {
+      animation-delay: 0.25s;
+    }
+    :global(html:not(.no-js)) .hero > :nth-child(4) {
+      animation-delay: 0.35s;
+    }
+    :global(html:not(.no-js)) .hero > :nth-child(5) {
+      animation-delay: 0.45s;
+    }
   }
 
-  .cta:hover {
-    background: var(--ink);
-    color: var(--bg);
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>

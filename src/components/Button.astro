@@ -1,0 +1,42 @@
+---
+// Reusable CTA button. variant: "primary" (filled on hover) | "ghost" (light border).
+interface Props {
+  href: string;
+  variant?: "primary" | "ghost";
+}
+const { href, variant = "primary" } = Astro.props;
+---
+
+<a class:list={["btn", variant]} href={href}><slot /></a>
+
+<style>
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .primary {
+    color: var(--ink);
+  }
+
+  .primary:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .ghost {
+    border-color: var(--line);
+    color: var(--ink);
+  }
+
+  .ghost:hover {
+    border-color: var(--ink);
+  }
+</style>

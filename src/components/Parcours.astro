@@ -24,9 +24,15 @@ const t = ui[lang].parcours;
   </div>
 
   <p class="meta stack-label">{t.stackLabel}</p>
-  <ul class="stack">
-    {t.stack.map((s) => <li>{s}</li>)}
-  </ul>
+  <div class="marquee">
+    <ul class="stack" aria-label={t.stackLabel}>
+      {
+        [...t.stack, ...t.stack].map((s, i) => (
+          <li aria-hidden={i >= t.stack.length ? "true" : undefined}>{s}</li>
+        ))
+      }
+    </ul>
+  </div>
 </section>
 
 <style>
@@ -64,20 +70,80 @@ const t = ui[lang].parcours;
     margin-top: clamp(2.5rem, 5vw, 4rem);
   }
 
-  .stack {
+  /* Edge fade so tags slide in/out softly instead of being hard-clipped. */
+  .marquee {
     margin-top: 1rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+  }
+
+  .stack {
     list-style: none;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    width: max-content;
+    animation: marquee 30s linear infinite;
   }
 
+  .marquee:hover .stack {
+    animation-play-state: paused;
+  }
+
+  /* Trailing margin (not flex gap) so the two copies tile seamlessly at -50%. */
   .stack li {
+    margin-right: 0.5rem;
     border: 1px solid var(--line);
     padding: 0.3rem 0.7rem;
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* No animation → wrap statically and drop the duplicate set. */
+  :global(html.no-js) .stack {
+    flex-wrap: wrap;
+    width: auto;
+    animation: none;
+  }
+
+  :global(html.no-js) .stack li[aria-hidden] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+
+    .stack {
+      flex-wrap: wrap;
+      width: auto;
+      animation: none;
+    }
+
+    .stack li[aria-hidden] {
+      display: none;
+    }
   }
 </style>

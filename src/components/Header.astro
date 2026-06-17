@@ -15,8 +15,8 @@ const blog = lang === "fr" ? "/blog" : "/en/blog";
 <header class="hd wrap">
   <a class="brand" href={home}>Jofnu</a>
   <nav class="nav">
-    <a href={blog}>{t.nav.blog}</a>
-    <a href={`mailto:${EMAIL}`}>{t.nav.contact}</a>
+    <a class="u-link" href={blog}>{t.nav.blog}</a>
+    <a class="u-link" href={`mailto:${EMAIL}`}>{t.nav.contact}</a>
     <LangSwitch href={altHref} />
   </nav>
 </header>

@@ -119,6 +119,21 @@ a:hover {
   letter-spacing: 0;
 }
 
+/* Underline that sweeps in from the left on hover/focus. */
+.u-link {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease;
+}
+
+.u-link:hover,
+.u-link:focus-visible {
+  background-size: 100% 1px;
+}
+
 .meta {
   font-size: 0.75rem;
   text-transform: uppercase;

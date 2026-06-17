@@ -12,7 +12,7 @@ const posts = (await getPosts(lang)).slice(0, 3);
 <section class="articles wrap">
   <div class="head">
     <h2>{t.heading}</h2>
-    <a class="all" href={blog}>{t.all}</a>
+    <a class="all u-link" href={blog}>{t.all}</a>
   </div>
   {
     posts.length > 0 ? (
