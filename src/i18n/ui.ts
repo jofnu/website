@@ -62,7 +62,7 @@ export const ui = {
         },
       ],
     },
-    parcours: {
+    background: {
       heading: "Parcours",
       lead: "Dix ans à concevoir et opérer des systèmes en production. Pas un CV — des choses qui tournent.",
       highlights: [
@@ -142,7 +142,7 @@ export const ui = {
         },
       ],
     },
-    parcours: {
+    background: {
       heading: "Background",
       lead: "Ten years designing and operating systems in production. Not a résumé — things that run.",
       highlights: [
