@@ -75,7 +75,7 @@ export const ui = {
     },
     articles: {
       heading: "Articles récents",
-      all: "Tout le blog →",
+      all: "Tout le blog",
       empty: "Premiers articles bientôt.",
       readingTime: (m: number) => `${m} min de lecture`,
     },
@@ -155,7 +155,7 @@ export const ui = {
     },
     articles: {
       heading: "Recent posts",
-      all: "All posts →",
+      all: "All posts",
       empty: "First posts coming soon.",
       readingTime: (m: number) => `${m} min read`,
     },

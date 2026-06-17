@@ -75,6 +75,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Subtle paper grain over everything — turns flat beige into printed stock. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.25;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 h1,
 h2,
 h3,
@@ -134,6 +145,18 @@ a:hover {
   background-size: 100% 1px;
 }
 
+/* Inline arrow that nudges forward when its link/button is hovered. */
+.arrow {
+  display: inline-block;
+  margin-left: 0.5em;
+  transition: transform 0.2s ease;
+}
+
+a:hover .arrow,
+.btn:hover .arrow {
+  transform: translateX(0.25em);
+}
+
 .meta {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -151,6 +174,27 @@ a:hover {
 .rule {
   border: none;
   border-top: 1px solid var(--line);
+}
+
+/* Rules draw in from the left as they scroll into view (pure CSS, progressive). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .rule {
+      transform-origin: left center;
+      animation: rule-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 20%;
+    }
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .skip {

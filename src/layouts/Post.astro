@@ -47,6 +47,8 @@ const jsonLd = {
     set:html={JSON.stringify(jsonLd)}
   />
 
+  <div class="reading-progress" aria-hidden="true"></div>
+
   <article class="wrap post">
     <a class="back" href={backHref}>← {ui[lang].nav.blog}</a>
     <header class="head">
@@ -71,6 +73,30 @@ const jsonLd = {
 <style>
   .post {
     padding-block: clamp(2rem, 5vw, 4rem);
+  }
+
+  /* Reading progress: scroll-linked, pure CSS. No support → bar stays hidden. */
+  .reading-progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 100;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .reading-progress {
+      animation: reading-progress linear;
+      animation-timeline: scroll(root);
+    }
+  }
+
+  @keyframes reading-progress {
+    to {
+      transform: scaleX(1);
+    }
   }
 
   .back {
