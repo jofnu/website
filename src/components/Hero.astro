@@ -23,13 +23,16 @@ const t = ui[lang].hero;
   .hero {
     padding-block: clamp(3rem, 9vh, 7rem) clamp(3rem, 8vh, 6rem);
   }
+
   h1 {
     margin-top: 1rem;
     max-width: 18ch;
   }
+
   .accent :global(.tw-text) {
     color: var(--accent);
   }
+
   .manifesto {
     margin-top: 2rem;
     font-size: clamp(1.5rem, 3vw, 2.25rem);
@@ -37,15 +40,18 @@ const t = ui[lang].hero;
     max-width: 24ch;
     color: var(--ink);
   }
+
   .subtitle {
     margin-top: 1.5rem;
     max-width: 52ch;
     color: var(--ink-soft);
     font-size: 1.15rem;
   }
+
   .cta-row {
     margin-top: 2.5rem;
   }
+
   .cta {
     display: inline-block;
     border: 1px solid var(--ink);
@@ -53,8 +59,11 @@ const t = ui[lang].hero;
     color: var(--ink);
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.2s, color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s;
   }
+
   .cta:hover {
     background: var(--ink);
     color: var(--bg);

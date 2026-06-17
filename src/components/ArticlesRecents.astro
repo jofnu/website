@@ -31,6 +31,7 @@ const posts = (await getPosts(lang)).slice(0, 3);
   .articles {
     padding-block: clamp(2rem, 6vw, 5rem);
   }
+
   .head {
     display: flex;
     align-items: baseline;
@@ -38,14 +39,17 @@ const posts = (await getPosts(lang)).slice(0, 3);
     gap: 1rem;
     flex-wrap: wrap;
   }
+
   .all {
     text-decoration: none;
     font-weight: 600;
   }
+
   .list {
     margin-top: 1.5rem;
     border-bottom: 1px solid var(--line);
   }
+
   .empty {
     margin-top: 1.5rem;
     font-size: 1.4rem;

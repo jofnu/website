@@ -3,7 +3,11 @@ import Base from "../layouts/Base.astro";
 // Single static 404 served by nginx for every path → bilingual, switch hidden.
 ---
 
-<Base title="404 — Jofnu" description="Page introuvable / Page not found" altHref={null}>
+<Base
+  title="404 — Jofnu"
+  description="Page introuvable / Page not found"
+  altHref={null}
+>
   <section class="wrap nf">
     <p class="meta">Erreur 404</p>
     <h1>Page introuvable.</h1>
@@ -23,24 +27,29 @@ import Base from "../layouts/Base.astro";
   .nf {
     padding-block: clamp(4rem, 14vh, 9rem);
   }
+
   h1 {
     margin-top: 1rem;
   }
+
   .sub {
     margin-top: 1.5rem;
     color: var(--ink-soft);
     font-size: 1.15rem;
   }
+
   .en {
     color: var(--ink-soft);
     opacity: 0.8;
   }
+
   .links {
     margin-top: 2.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: clamp(1rem, 3vw, 2rem);
   }
+
   .links a {
     font-weight: 600;
     text-decoration: none;

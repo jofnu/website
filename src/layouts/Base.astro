@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import { LINKEDIN } from "../i18n/ui";
 
 interface Props {
   title: string;
@@ -33,7 +34,7 @@ const orgLd = {
   name: "Jofnu",
   url: Astro.site?.href,
   founder: { "@type": "Person", name: "Alexandre Santos Figueiredo" },
-  sameAs: ["https://www.linkedin.com/in/alexandresantos-figueiredo"],
+  sameAs: [LINKEDIN],
 };
 ---
 

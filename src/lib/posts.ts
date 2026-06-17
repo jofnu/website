@@ -23,11 +23,11 @@ export async function getPosts(lang: Lang): Promise<Post[]> {
 /** Mirror URL in the other language if a translation exists, else null. */
 export async function translationHref(
   slug: string,
-  otherLang: Lang
+  otherLang: Lang,
 ): Promise<string | null> {
   const all = await getCollection("blog");
   const match = all.find(
-    (p) => p.data.slug === slug && p.data.lang === otherLang && visible(p)
+    (p) => p.data.slug === slug && p.data.lang === otherLang && visible(p),
   );
   return match ? postHref(match) : null;
 }

@@ -12,7 +12,7 @@ const href = postHref(post);
 const rt = readingTime(post.body);
 const dateStr = post.data.date.toLocaleDateString(
   lang === "fr" ? "fr-FR" : "en-US",
-  { year: "numeric", month: "long", day: "numeric" }
+  { year: "numeric", month: "long", day: "numeric" },
 );
 ---
 
@@ -39,17 +39,21 @@ const dateStr = post.data.date.toLocaleDateString(
     color: var(--ink);
     text-decoration: none;
   }
+
   .card:hover h3 {
     color: var(--accent);
   }
+
   .card h3 {
     margin-top: 0.5rem;
   }
+
   .desc {
     margin-top: 0.5rem;
     color: var(--ink-soft);
     max-width: 60ch;
   }
+
   .tags {
     margin-top: 0.85rem;
     list-style: none;
@@ -58,6 +62,7 @@ const dateStr = post.data.date.toLocaleDateString(
     flex-wrap: wrap;
     gap: 0.4rem;
   }
+
   .tags li {
     font-size: 0.72rem;
     font-weight: 600;

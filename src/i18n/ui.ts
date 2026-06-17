@@ -2,8 +2,8 @@
 // Components read `Astro.currentLocale` and pick the matching slice.
 export type Lang = "fr" | "en";
 
-export const LINKEDIN = "https://www.linkedin.com/in/alexandresantos-figueiredo";
-export const EMAIL = "accounts@jofnu.com";
+export const LINKEDIN = "https://www.linkedin.com/company/jofnu";
+export const EMAIL = "hello@jofnu.com";
 
 export const ui = {
   fr: {
@@ -57,7 +57,6 @@ export const ui = {
       lead: "Dix ans à concevoir et opérer des systèmes en production. Pas un CV — des choses qui tournent.",
       highlights: [
         { k: "10 ans", v: "d'ingénierie produit & logicielle" },
-        { k: "Bouygues Telecom", v: "produits à grande échelle" },
         { k: "Grands groupes", v: "IA, cloud, automatisation" },
       ],
       stackLabel: "Stack",

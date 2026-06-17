@@ -7,6 +7,7 @@ interface Props {
   post: Post;
   altHref?: string | null;
 }
+
 const { post, altHref = null } = Astro.props;
 const { title, description, date, lang, tags } = post.data;
 const t = ui[lang].articles;
@@ -16,6 +17,7 @@ const dateStr = date.toLocaleDateString(lang === "fr" ? "fr-FR" : "en-US", {
   month: "long",
   day: "numeric",
 });
+
 const backHref = lang === "fr" ? "/blog" : "/en/blog";
 
 const jsonLd = {
@@ -70,18 +72,22 @@ const jsonLd = {
   .post {
     padding-block: clamp(2rem, 5vw, 4rem);
   }
+
   .back {
     font-weight: 600;
     text-decoration: none;
     font-size: 0.95rem;
   }
+
   .head {
     margin-block: clamp(1.5rem, 4vw, 3rem);
   }
+
   .head h1 {
     margin-top: 1rem;
     max-width: 22ch;
   }
+
   .tags {
     margin-top: 1.25rem;
     list-style: none;
@@ -90,6 +96,7 @@ const jsonLd = {
     flex-wrap: wrap;
     gap: 0.4rem;
   }
+
   .tags li {
     font-size: 0.72rem;
     font-weight: 600;
