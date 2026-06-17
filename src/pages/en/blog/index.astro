@@ -3,13 +3,14 @@ import Base from "../../../layouts/Base.astro";
 import PostCard from "../../../components/PostCard.astro";
 import { getPosts } from "../../../lib/posts";
 import { ui } from "../../../i18n/ui";
+import { COMPANY_NAME } from "../../../lib/constants";
 
 const t = ui.en;
 const posts = await getPosts("en");
 ---
 
 <Base
-  title={`${t.articles.heading} — Jofnu`}
+  title={`${t.articles.heading} — ${COMPANY_NAME}`}
   description={t.meta.description}
   lang="en"
   altHref="/blog"

@@ -1,5 +1,6 @@
 ---
-import { ui, getLang, EMAIL } from "../i18n/ui";
+import { ui, getLang } from "../i18n/ui";
+import { COMPANY_EMAIL, COMPANY_NAME } from "../lib/constants";
 import LangSwitch from "./LangSwitch.astro";
 
 interface Props {
@@ -13,10 +14,10 @@ const blog = lang === "fr" ? "/blog" : "/en/blog";
 ---
 
 <header class="hd wrap">
-  <a class="brand" href={home}>Jofnu</a>
+  <a class="brand" href={home}>{COMPANY_NAME}</a>
   <nav class="nav">
     <a class="u-link" href={blog}>{t.nav.blog}</a>
-    <a class="u-link" href={`mailto:${EMAIL}`}>{t.nav.contact}</a>
+    <a class="u-link" href={`mailto:${COMPANY_EMAIL}`}>{t.nav.contact}</a>
     <LangSwitch href={altHref} />
   </nav>
 </header>

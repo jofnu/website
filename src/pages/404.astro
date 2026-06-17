@@ -1,10 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
-// Single static 404 served by nginx for every path → bilingual, switch hidden.
+import { COMPANY_NAME } from "../lib/constants";
 ---
 
 <Base
-  title="404 — Jofnu"
+  title=`404 — ${COMPANY_NAME}`
   description="Page introuvable / Page not found"
   altHref={null}
 >

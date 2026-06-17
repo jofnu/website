@@ -39,17 +39,22 @@ const t = ui[lang].hero;
     max-width: 18ch;
   }
 
-  /* All phrases stack in one grid cell → height = tallest; live text overlays. */
+  /* Hidden ghosts (all phrases, in flow) reserve height = tallest phrase. */
   .title {
     display: grid;
-  }
-
-  .title > * {
-    grid-area: 1 / 1;
+    position: relative;
   }
 
   .title-ghost {
+    grid-area: 1 / 1;
     visibility: hidden;
+  }
+
+  /* Live line is removed from flow → its width/caret/extra wraps never
+     change the title height, so content below can't shift. */
+  .title-live {
+    position: absolute;
+    inset: 0;
   }
 
   .accent :global(.tw-text) {

@@ -1,5 +1,6 @@
 ---
-import { ui, getLang, EMAIL, LINKEDIN } from "../i18n/ui";
+import { ui, getLang } from "../i18n/ui";
+import { COMPANY_EMAIL, COMPANY_LINKEDIN } from "../lib/constants";
 
 const lang = getLang(Astro.currentLocale);
 const t = ui[lang].contact;
@@ -8,9 +9,9 @@ const t = ui[lang].contact;
 <section id="contact" class="contact wrap">
   <h2>{t.heading}</h2>
   <p class="body">{t.body}</p>
-  <a class="mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+  <a class="mail" href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>
   <p class="secondary">
-    <a class="u-link" href={LINKEDIN} rel="me noopener" target="_blank"
+    <a class="u-link" href={COMPANY_LINKEDIN} rel="me noopener" target="_blank"
       >{t.linkedin} <span class="arrow">→</span></a
     >
   </p>

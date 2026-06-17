@@ -2,6 +2,7 @@
 import Base from "./Base.astro";
 import { readingTime, type Post } from "../lib/posts";
 import { ui } from "../i18n/ui";
+import { CEO_NAME, COMPANY_NAME } from "../lib/constants";
 
 interface Props {
   post: Post;
@@ -18,6 +19,7 @@ const dateStr = date.toLocaleDateString(lang === "fr" ? "fr-FR" : "en-US", {
   day: "numeric",
 });
 
+const author = CEO_NAME;
 const backHref = lang === "fr" ? "/blog" : "/en/blog";
 
 const jsonLd = {
@@ -27,14 +29,14 @@ const jsonLd = {
   description,
   datePublished: date.toISOString(),
   inLanguage: lang,
-  author: { "@type": "Person", name: "Alexandre Santos Figueiredo" },
-  publisher: { "@type": "Organization", name: "Jofnu" },
+  author: { "@type": "Person", name: author },
+  publisher: { "@type": "Organization", name: COMPANY_NAME },
   url: new URL(Astro.url.pathname, Astro.site).href,
 };
 ---
 
 <Base
-  title={`${title} — Jofnu`}
+  title={`${title} — ${COMPANY_NAME}`}
   description={description}
   lang={lang}
   altHref={altHref}
@@ -52,7 +54,7 @@ const jsonLd = {
   <article class="wrap post">
     <a class="back" href={backHref}>← {ui[lang].nav.blog}</a>
     <header class="head">
-      <p class="meta">{dateStr} · {t.readingTime(rt)}</p>
+      <p class="meta">{author} · {dateStr} · {t.readingTime(rt)}</p>
       <h1>{title}</h1>
       {
         tags && tags.length > 0 && (
