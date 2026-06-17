@@ -34,4 +34,9 @@ export const TECHNICAL_STACK = [
   "Docker",
 ];
 
-export const CLIENTS = ["Bouygues Telecom"];
+export const CLIENTS = [
+  "Bouygues Telecom",
+  "Only Solution",
+  "Blackpaws",
+  "Databot",
+];
