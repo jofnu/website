@@ -35,8 +35,11 @@ export const TECHNICAL_STACK = [
 ];
 
 export const CLIENTS = [
-  "Bouygues Telecom",
-  "Only Solution",
-  "Blackpaws",
-  "Databot",
+  { name: "Bouygues Telecom", url: "https://www.bouyguestelecom.fr" },
+  {
+    name: "Only Solution",
+    url: "https://www.linkedin.com/company/only-solution",
+  },
+  { name: "Blackpaws", url: "https://blackpaws.fr" },
+  { name: "Databot", url: "https://data-bot.xyz" },
 ];
