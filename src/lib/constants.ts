@@ -35,11 +35,24 @@ export const TECHNICAL_STACK = [
 ];
 
 export const CLIENTS = [
-  { name: "Bouygues Telecom", url: "https://www.bouyguestelecom.fr" },
+  {
+    name: "Bouygues Telecom",
+    url: "https://www.bouyguestelecom.fr",
+    logo: "/partners/bouygues_telecom.png",
+  },
   {
     name: "Only Solution",
     url: "https://www.linkedin.com/company/only-solution",
+    logo: "/partners/only_solution.png",
   },
-  { name: "Blackpaws", url: "https://blackpaws.fr" },
-  { name: "Databot", url: "https://data-bot.xyz" },
+  {
+    name: "Blackpaws",
+    url: "https://blackpaws.fr",
+    logo: "/partners/blackpaws.png",
+  },
+  {
+    name: "Databot",
+    url: "https://data-bot.xyz",
+    logo: "/partners/databot.png",
+  },
 ];
