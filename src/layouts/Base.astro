@@ -3,7 +3,15 @@ import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
-import { CEO_NAME, COMPANY_LINKEDIN, COMPANY_NAME } from "../lib/constants";
+import {
+  CEO_LINKEDIN,
+  CEO_NAME,
+  COMPANY_EMAIL,
+  COMPANY_GITHUB,
+  COMPANY_LINKEDIN,
+  COMPANY_NAME,
+  TECHNICAL_STACK,
+} from "../lib/constants";
 
 interface Props {
   title: string;
@@ -29,11 +37,30 @@ const skip = lang === "en" ? "Skip to content" : "Aller au contenu";
 
 const orgLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   name: COMPANY_NAME,
   url: Astro.site?.href,
-  founder: { "@type": "Person", name: CEO_NAME },
-  sameAs: [COMPANY_LINKEDIN],
+  email: COMPANY_EMAIL,
+  description,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "60 rue François 1er",
+    postalCode: "75008",
+    addressLocality: "Paris",
+    addressCountry: "FR",
+  },
+  areaServed: "FR",
+  founder: { "@type": "Person", name: CEO_NAME, sameAs: CEO_LINKEDIN },
+  knowsAbout: [
+    "Produits IA",
+    "Architectures multi-agents",
+    "RAG",
+    "MCP",
+    "Applications web & mobiles",
+    "Cloud",
+    ...TECHNICAL_STACK,
+  ],
+  sameAs: [COMPANY_LINKEDIN, COMPANY_GITHUB, CEO_LINKEDIN],
 };
 ---
 
