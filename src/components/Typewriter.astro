@@ -9,25 +9,23 @@ const { phrases } = Astro.props;
 ---
 
 <span class="tw" data-phrases={JSON.stringify(phrases)}>
-  <span class="tw-text">{phrases[0]}</span><span
-    class="tw-caret"
-    aria-hidden="true"></span>
+  <span class="tw-text">{phrases[0]}</span>
 </span>
 
 <style>
-  .tw-caret {
-    display: inline-block;
-    width: 0.06em;
-    height: 0.9em;
-    margin-left: 0.06em;
-    background: var(--accent);
-    transform: translateY(0.08em);
+  /* Caret is a border on the text, not a separate inline-block element:
+     an inline-block caret can wrap onto its own line when the last line is
+     nearly full, adding a phantom line that overflows the reserved height.
+     A border adds zero layout, so the live line never exceeds the ghosts. */
+  .tw-text {
+    border-right: 0.07em solid var(--accent);
+    padding-right: 0.04em;
     animation: tw-blink 1s step-end infinite;
   }
 
   @keyframes tw-blink {
     50% {
-      opacity: 0;
+      border-color: transparent;
     }
   }
 </style>

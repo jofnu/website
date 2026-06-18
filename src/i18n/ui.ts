@@ -14,23 +14,24 @@ export type Lang = "fr" | "en";
 export const ui = {
   fr: {
     meta: {
-      title: `${COMPANY_NAME} — Produits IA & architectures multi-agents`,
+      title: `${COMPANY_NAME} — Produits IA, applications web & mobiles`,
       description:
-        "Conception de produits IA et d'architectures multi-agents (RAG/MCP, cloud) pour grands groupes. De l'architecture au déploiement en production.",
+        "Conception de produits IA, d'architectures multi-agents (RAG/MCP, cloud) et d'applications web & mobiles à grande échelle pour grands groupes. De l'architecture au déploiement en production.",
     },
     nav: { blog: "Blog", contact: "Contact" },
     hero: {
-      eyebrow: "Produits IA · Architectures multi-agents",
+      eyebrow: "Produits IA · Applications web & mobiles",
       prefix: "Nous concevons",
       phrases: [
         "de l'IA qui crée de la valeur.",
-        "des systèmes multi-agents à l'échelle.",
-        "des architectures RAG & MCP robustes.",
+        "des applications web & mobiles à grande échelle.",
+        "des systèmes multi-agents robustes.",
+        "des architectures RAG & MCP fiables.",
       ],
       manifesto:
-        "L'IA utile n'est pas une démo. C'est un système qui tient, se mesure et passe à l'échelle.",
+        "L'IA utile n'est pas une démo. C'est un produit qui tient, se mesure et passe à l'échelle.",
       subtitle:
-        "Concepteurs de produits IA pour grands groupes — de l'architecture au déploiement en production.",
+        "Concepteurs de produits IA et d'applications web & mobiles pour grands groupes — de l'architecture au déploiement en production.",
       cta: "Travaillons ensemble",
     },
     services: {
@@ -39,6 +40,10 @@ export const ui = {
         {
           title: "Produits IA",
           body: "De l'idée au produit : cadrage, prototypage et mise en production d'assistants et copilotes métier.",
+        },
+        {
+          title: "Applications web & mobiles",
+          body: "Du back-end à l'app mobile : des produits robustes et performants, pensés pour passer à l'échelle.",
         },
         {
           title: "Réflexion produit & design",
@@ -55,10 +60,6 @@ export const ui = {
         {
           title: "Automatisation",
           body: "Pipelines et intégrations qui suppriment le travail manuel et accélèrent les équipes.",
-        },
-        {
-          title: "Full-stack & mobile",
-          body: "Du back-end à l'app mobile : des interfaces soignées au service de l'IA.",
         },
       ],
     },
@@ -94,23 +95,24 @@ export const ui = {
   },
   en: {
     meta: {
-      title: `${COMPANY_NAME} — AI products & multi-agent architectures`,
+      title: `${COMPANY_NAME} — AI products, web & mobile apps`,
       description:
-        "AI products and multi-agent architectures (RAG/MCP, cloud) for enterprises. From architecture to production deployment.",
+        "AI products, multi-agent architectures (RAG/MCP, cloud) and web & mobile apps at scale for enterprises. From architecture to production deployment.",
     },
     nav: { blog: "Blog", contact: "Contact" },
     hero: {
-      eyebrow: "AI products · Multi-agent architectures",
+      eyebrow: "AI products · Web & mobile apps",
       prefix: "We design",
       phrases: [
         "AI that creates value.",
-        "multi-agent systems at scale.",
-        "robust RAG & MCP architectures.",
+        "web & mobile apps at scale.",
+        "robust multi-agent systems.",
+        "reliable RAG & MCP architectures.",
       ],
       manifesto:
-        "Useful AI is not a demo. It is a system that holds, measures itself and scales.",
+        "Useful AI is not a demo. It is a product that holds, measures itself and scales.",
       subtitle:
-        "AI product designers for enterprises — from architecture to production deployment.",
+        "AI products and web & mobile apps for enterprises — from architecture to production deployment.",
       cta: "Let's work together",
     },
     services: {
@@ -119,6 +121,10 @@ export const ui = {
         {
           title: "AI products",
           body: "From idea to product: framing, prototyping and shipping business assistants and copilots.",
+        },
+        {
+          title: "Web & mobile apps",
+          body: "From back-end to mobile app: robust, performant products built to scale.",
         },
         {
           title: "Product thinking & design",
@@ -135,10 +141,6 @@ export const ui = {
         {
           title: "Automation",
           body: "Pipelines and integrations that remove manual work and speed up teams.",
-        },
-        {
-          title: "Full-stack & mobile",
-          body: "From back-end to mobile app: polished interfaces in service of AI.",
         },
       ],
     },

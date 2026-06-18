@@ -12,7 +12,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
@@ -26,3 +25,6 @@ pnpm-debug.log*
 # Markdown files
 *.md
 !README.md
+
+# Playwright MCP
+.playwright-mcp/
