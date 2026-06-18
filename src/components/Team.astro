@@ -1,0 +1,115 @@
+---
+import { ui, getLang } from "../i18n/ui";
+import { TEAM } from "../lib/constants";
+import Reveal from "./Reveal.astro";
+
+const lang = getLang(Astro.currentLocale);
+const t = ui[lang].team;
+---
+
+<section class="team wrap">
+  <h2>{t.heading}</h2>
+  <p class="lead serif">{t.lead}</p>
+  <div class="grid">
+    {
+      TEAM.map((m, i) => (
+        <Reveal delay={i * 0.07}>
+          <article class="card">
+            <img class="photo" src={m.photo} alt={m.name} loading="lazy" />
+            <h3>{m.name}</h3>
+            <p class="role">{m.role[lang]}</p>
+            <p class="body">{m.bio[lang]}</p>
+            <p class="links">
+              {m.linkedin && (
+                <a href={m.linkedin} target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              )}
+              {m.github && (
+                <a href={m.github} target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
+              )}
+            </p>
+          </article>
+        </Reveal>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .team {
+    padding-block: clamp(2rem, 6vw, 5rem);
+  }
+
+  .lead {
+    margin-top: 1rem;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.25;
+    max-width: 30ch;
+    color: var(--ink);
+  }
+
+  .grid {
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+    display: grid;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+
+  .card {
+    border: 1px solid var(--line);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    height: 100%;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .photo {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .card h3 {
+    margin-top: 0.8rem;
+  }
+
+  .role {
+    margin-top: 0.2rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .body {
+    margin-top: 0.6rem;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+
+  .links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .links a {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+  }
+</style>

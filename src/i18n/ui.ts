@@ -81,6 +81,10 @@ export const ui = {
       stackLabel: "Stack",
       stack: TECHNICAL_STACK,
     },
+    team: {
+      heading: "L'équipe",
+      lead: "Les personnes derrière les produits.",
+    },
     articles: {
       heading: "Articles récents",
       all: "Tout le blog",
@@ -161,6 +165,10 @@ export const ui = {
       },
       stackLabel: "Stack",
       stack: TECHNICAL_STACK,
+    },
+    team: {
+      heading: "The team",
+      lead: "The people behind the products.",
     },
     articles: {
       heading: "Recent posts",

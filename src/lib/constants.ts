@@ -34,6 +34,21 @@ export const TECHNICAL_STACK = [
   "Docker",
 ];
 
+// Photos go in public/team/. github/linkedin optional — omit to hide the link.
+export const TEAM = [
+  {
+    name: CEO_NAME,
+    role: { fr: "Fondateur & CEO", en: "Founder & CEO" },
+    photo: "/team/alexandre.jpeg",
+    bio: {
+      fr: "10 ans à concevoir et opérer des produits IA et cloud en production.",
+      en: "10 years designing and operating AI & cloud products in production.",
+    },
+    github: CEO_GITHUB,
+    linkedin: CEO_LINKEDIN,
+  },
+];
+
 export const CLIENTS = [
   {
     name: "Bouygues Telecom",
